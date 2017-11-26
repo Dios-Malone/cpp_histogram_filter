@@ -17,4 +17,6 @@ std::vector < std::vector <char> > read_map(std::string file_name);
 
 std::vector < std::vector <float> > zeros(int height, int width);
 
+template<typename T>
+void show_grid(std::vector < std::vector <T> > grid);
 #endif /* HELPERS_H */

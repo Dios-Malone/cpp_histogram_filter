@@ -140,17 +140,13 @@ vector < vector <float> > blur(vector < vector < float> > grid, float blurring) 
 			for(int dx = -1; dx < 2; dx++){
 				for(int dy = -1; dy < 2; dy++){
 					float mult = window[dx+1][dy+1];
-					int new_i = (i + dy)%height;
-					int new_j = (j + dx)%width;
-					cout << " "<< mult << " * " << grid_val;
-					cout << " at (" << i << "," << j <<")" <<endl;
-					cout << "new ixj: ";
+					int new_i = (i + dy + height)%height; 	//Plus height to avoid negative result
+					int new_j = (j + dx + width)%width;		//Plus width to avoid negative result
 					newGrid[new_i][new_j] += mult * grid_val;
 				}
 			}
 		}
 	}
-
 	return normalize(newGrid);
 }
 
@@ -217,7 +213,7 @@ bool close_enough(float v1, float v2) {
 vector <char> read_line(string s) {
 	vector <char> row;
 
-	int pos = 0;
+	size_t pos = 0;
 	string token;
 	string delimiter = " ";
 	char cell;
@@ -299,8 +295,8 @@ void show_grid(vector < vector <T> > grid) {
 	}
 }
 
-int main() {
-	vector < vector < char > > map = read_map("maps/m1.txt");
-	show_grid(blur(zeros(5,5), 0.12));
-	return 0;
-}
+// int main() {
+// 	vector < vector < char > > map = read_map("maps/m1.txt");
+// 	show_grid(map);
+// 	return 0;
+// }
